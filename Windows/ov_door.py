@@ -16,6 +16,7 @@ def create_icon_image(color):
 
     font_path = "C:/Windows/Fonts/arial.ttf"
     max_font_size = 120
+
     while max_font_size > 10:
         try:
             font = ImageFont.truetype(font_path, max_font_size)
@@ -77,7 +78,7 @@ def quit_program(icon):
     icon.stop()
 
 
-def check_startup(*args):  # Accept and ignore additional arguments
+def check_startup(*args):
     with winreg.OpenKey(
         winreg.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run"
     ) as key:
@@ -124,7 +125,7 @@ def create_tray_icon():
     menu = pystray.Menu(
         item("Open Website", open_website),
         item("Run at Startup", toggle_startup, checked=check_startup),
-        item("Quit", lambda icon, item: quit_program(icon)),
+        item("Quit", quit_program),
     )
 
     icon = pystray.Icon(
