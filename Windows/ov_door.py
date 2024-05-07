@@ -7,10 +7,8 @@ import os
 import winreg
 import sys
 import pystray
-from notifications import *
-import datetime
-
-notification_settings = None
+from io import BytesIO
+from datetime import datetime
 
 
 def change_hue(image, target_hue):
@@ -33,7 +31,9 @@ def format_elapsed_time(seconds):
 
 
 def update_icon_based_on_api(icon, base_icon_path):
-    base_icon = Image.open(base_icon_path).convert("RGBA")
+    base_icon = Image.open(BytesIO(requests.get(base_icon_path).content)).convert(
+        "RGBA"
+    )
     last_status = None
 
     while True:
@@ -55,10 +55,10 @@ def update_icon_based_on_api(icon, base_icon_path):
             icon.icon = hue_shifted_icon
             icon.title = f"{'Open' if is_open else 'Closed'} for {elapsed_time}"
 
-            if last_status is not None and last_status != is_open:
-                status_text = "Open" if is_open else "Closed"
-                if should_send_notification():
-                    send_notification(f"Omega Verksted is now {status_text}", is_open)
+            # if last_status is not None and last_status != is_open:
+            #     status_text = "Open" if is_open else "Closed"
+            #     if should_send_notification():
+            #         send_notification(f"Omega Verksted is now {status_text}", is_open)
 
             last_status = is_open
 
@@ -68,8 +68,6 @@ def update_icon_based_on_api(icon, base_icon_path):
         except Exception as e:
             print(f"An error occurred: {e}")
 
-        send_notification("Testing", is_open)
-
         time.sleep(60)
 
 
@@ -77,26 +75,9 @@ def open_website():
     os.system("start https://omegav.no")
 
 
-def set_notification_settings(icon, item):
-    global notification_settings
-    notification_settings = get_notification_settings()
-    return notification_settings
-
-
 def should_send_notification():
-    current_day = datetime.now().strftime("%A")
-    current_time = datetime.now().time()
-
-    if current_day not in notification_settings["days"]:
-        return False
-
-    start_time = time.fromisoformat(notification_settings["start_time"])
-    end_time = time.fromisoformat(notification_settings["end_time"])
-
-    if start_time <= current_time <= end_time:
-        return True
-    else:
-        return False
+    # You should implement notification settings handling here
+    return True
 
 
 def quit_program(icon):
@@ -149,20 +130,21 @@ def toggle_startup(icon, item):
 def create_tray_icon():
     menu = pystray.Menu(
         item("Open Website", open_website),
-        # item("Notifications Settings", set_notification_settings),
         item("Run at Startup", toggle_startup, checked=check_startup),
         item("Quit", quit_program),
     )
 
-    base_icon_path = "C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\ov_logo.ico"
+    base_icon_url = "https://raw.githubusercontent.com/kristiangoystdal/OV_Door/main/Windows/ov_logo.ico"
+
+    icon_img = Image.open(BytesIO(requests.get(base_icon_url).content))
     icon = Icon(
         "omega_icon",
-        Image.open(base_icon_path),
+        icon_img,
         "Omega Verksted Door Status",
         menu,
     )
     threading.Thread(
-        target=update_icon_based_on_api, args=(icon, base_icon_path), daemon=True
+        target=update_icon_based_on_api, args=(icon, base_icon_url), daemon=True
     ).start()
     icon.run()
 
