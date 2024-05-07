@@ -9,6 +9,19 @@ import sys
 import pystray
 from io import BytesIO
 from datetime import datetime
+import tkinter as tk
+from tkinter import messagebox
+
+
+def user_confirm(prompt):
+    root = tk.Tk()
+    root.withdraw()
+
+    response = messagebox.askyesno("Confirmation", prompt)
+
+    root.destroy()
+
+    return response
 
 
 def change_hue(image, target_hue):
@@ -27,7 +40,7 @@ def change_hue(image, target_hue):
 def format_elapsed_time(seconds):
     hours, remainder = divmod(seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
-    return f"{hours}h {minutes}m"
+    return f"{hours}h {minutes}m {seconds}s"
 
 
 def update_icon_based_on_api(icon, base_icon_path):
@@ -74,21 +87,30 @@ def quit_program(icon):
     icon.stop()
 
 
+def toggle_startup(icon, item):
+    startup_enabled = check_startup()
+    if startup_enabled and user_confirm("Do you want to remove this app from startup?"):
+        remove_from_startup()
+    elif not startup_enabled and user_confirm(
+        "Do you want to add this app to startup?"
+    ):
+        add_to_startup()
+
+
 def check_startup(*args):
-    with winreg.OpenKey(
-        winreg.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run"
-    ) as key:
-        try:
+    try:
+        with winreg.OpenKey(
+            winreg.HKEY_CURRENT_USER,
+            "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+        ) as key:
             winreg.QueryValueEx(key, "MyPythonScript")
             return True
-        except FileNotFoundError:
-            return False
+    except FileNotFoundError:
+        return False
 
 
-def add_to_startup(exe_path=None):
-    if exe_path is None:
-        exe_path = os.path.abspath(sys.argv[0])
-
+def add_to_startup():
+    exe_path = os.path.abspath(sys.argv[0])
     with winreg.OpenKey(
         winreg.HKEY_CURRENT_USER,
         "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
@@ -110,29 +132,19 @@ def remove_from_startup():
     print("Removed from startup")
 
 
-def toggle_startup(icon, item):
-    if check_startup():
-        remove_from_startup()
-    else:
-        add_to_startup()
-
-
 def create_tray_icon():
     menu = pystray.Menu(
         item("Open Website", open_website),
-        item("Run at Startup", toggle_startup, checked=check_startup),
+        item(
+            "Run at Startup",
+            lambda icon, item: toggle_startup(icon, item),
+            checked=check_startup,
+        ),
         item("Quit", quit_program),
     )
-
     base_icon_url = "https://raw.githubusercontent.com/kristiangoystdal/OV_Door/main/Windows/ov_logo.ico"
-
     icon_img = Image.open(BytesIO(requests.get(base_icon_url).content))
-    icon = Icon(
-        "omega_icon",
-        icon_img,
-        "Omega Verksted Door Status",
-        menu,
-    )
+    icon = Icon("omega_icon", icon_img, "Omega Verksted Door Status", menu)
     threading.Thread(
         target=update_icon_based_on_api, args=(icon, base_icon_url), daemon=True
     ).start()
