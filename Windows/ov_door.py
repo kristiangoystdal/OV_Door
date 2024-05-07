@@ -9,19 +9,10 @@ import sys
 import pystray
 from io import BytesIO
 from datetime import datetime
-import tkinter as tk
-from tkinter import messagebox
 
 
-def user_confirm(prompt):
-    root = tk.Tk()
-    root.withdraw()
-
-    response = messagebox.askyesno("Confirmation", prompt)
-
-    root.destroy()
-
-    return response
+from updates import *
+from user_interactions import *
 
 
 def change_hue(image, target_hue):
@@ -40,7 +31,7 @@ def change_hue(image, target_hue):
 def format_elapsed_time(seconds):
     hours, remainder = divmod(seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
-    return f"{hours}h {minutes}m {seconds}s"
+    return f"{hours}h {minutes}m"
 
 
 def update_icon_based_on_api(icon, base_icon_path):
@@ -134,6 +125,7 @@ def remove_from_startup():
 
 def create_tray_icon():
     menu = pystray.Menu(
+        item("Check for Updates", lambda icon: check_for_updates()),
         item("Open Website", open_website),
         item(
             "Run at Startup",
