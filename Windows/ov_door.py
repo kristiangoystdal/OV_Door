@@ -55,11 +55,6 @@ def update_icon_based_on_api(icon, base_icon_path):
             icon.icon = hue_shifted_icon
             icon.title = f"{'Open' if is_open else 'Closed'} for {elapsed_time}"
 
-            # if last_status is not None and last_status != is_open:
-            #     status_text = "Open" if is_open else "Closed"
-            #     if should_send_notification():
-            #         send_notification(f"Omega Verksted is now {status_text}", is_open)
-
             last_status = is_open
 
         except requests.RequestException as e:
@@ -73,11 +68,6 @@ def update_icon_based_on_api(icon, base_icon_path):
 
 def open_website():
     os.system("start https://omegav.no")
-
-
-def should_send_notification():
-    # You should implement notification settings handling here
-    return True
 
 
 def quit_program(icon):
