@@ -1,19 +1,15 @@
 from cx_Freeze import setup, Executable
 import sys
 
-# Add additional packages as needed
 build_exe_options = {
-    "packages": [],  # add necessary packages
-    "excludes": [],  # exclude unnecessary packages
+    "packages": [],  # List additional packages needed by the script here
+    "excludes": [],  # List packages to exclude
     "include_files": [
         ("C:/Users/krisg/Documents/Git/OV_Door/Windows/ov_logo.ico", "ov_logo.ico")
-    ],  # include additional files
+    ],
 }
 
-# GUI applications require a different base on Windows!
-base = None
-if sys.platform == "win32":
-    base = "Win32GUI"
+base = "Win32GUI" if sys.platform == "win32" else None
 
 setup(
     name="Omega Verksted",
