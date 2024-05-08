@@ -1,3 +1,5 @@
 @echo off
-pyinstaller --clean --onefile --windowed --icon=C:\Users\krisg\Documents\Git\OV_Door\Windows\ov_logo.ico --name="Omega Verksted" ov_door.py
+echo Building the Omega Verksted executable using cx_Freeze...
+python setup.py build
+echo Build process complete.
 pause
