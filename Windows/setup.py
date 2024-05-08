@@ -13,7 +13,7 @@ base = "Win32GUI" if sys.platform == "win32" else None
 
 setup(
     name="Omega Verksted",
-    version="1.0.0",
+    version="1.1.0",
     description="A tool for Omega Verksted's door status",
     options={"build_exe": build_exe_options},
     executables=[Executable("ov_door.py", base=base, icon="ov_logo.ico")],

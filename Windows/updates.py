@@ -10,11 +10,19 @@ import pefile
 
 
 def get_exe_version(file_path):
-    pe = pefile.PE(file_path)
-    ms = pe.VS_FIXEDFILEINFO[0]
-    version = f"{ms.FileVersionMS >> 16 & 0xffff}.{ms.FileVersionMS & 0xffff}.{ms.FileVersionLS >> 16 & 0xffff}.{ms.FileVersionLS & 0xffff}"
-    pe.close()
-    return version
+    try:
+        pe = pefile.PE(file_path)
+        if hasattr(pe, "VS_FIXEDFILEINFO"):
+            ms = pe.VS_FIXEDFILEINFO[0]
+            version = f"{ms.FileVersionMS >> 16 & 0xffff}.{ms.FileVersionMS & 0xffff}.{ms.FileVersionLS >> 16 & 0xffff}.{ms.FileVersionLS & 0xffff}"
+            pe.close()
+            return version
+        else:
+            pe.close()
+            return "0.0.0.0"  # Return a default version if no version info is found
+    except Exception as e:
+        print(f"Error reading version from {file_path}: {e}")
+        return "0.0.0.0"  # Return a default version on error
 
 
 def user_confirm(message):
@@ -67,7 +75,7 @@ def apply_update(new_exe_path):
 
 def check_for_updates():
     current_version = get_exe_version(sys.executable)
-    latest_version_url = "https://github.com/kristiangoystdal/OV_Door/blob/main/Windows/build/exe.win-amd64-3.11/ov_door.exe"
+    latest_version_url = "https://github.com/kristiangoystdal/OV_Door/blob/main/Windows/dist/Omega%20Verksted.exe"
     temp_exe_path = download_new_version(latest_version_url)
     latest_version = get_exe_version(temp_exe_path)
 
