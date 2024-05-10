@@ -647,6 +647,19 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\mimetypes.py',
    'PYMODULE'),
+  ('modules', '-', 'PYMODULE'),
+  ('modules.icon',
+   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\modules\\icon.py',
+   'PYMODULE'),
+  ('modules.startup',
+   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\modules\\startup.py',
+   'PYMODULE'),
+  ('modules.tray',
+   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\modules\\tray.py',
+   'PYMODULE'),
+  ('modules.user_interactions',
+   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\modules\\user_interactions.py',
+   'PYMODULE'),
   ('netrc',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\netrc.py',
@@ -1184,9 +1197,6 @@
   ('urllib3.util.wait',
    'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\urllib3\\util\\wait.py',
    'PYMODULE'),
-  ('user_interactions',
-   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\user_interactions.py',
-   'PYMODULE'),
   ('xml',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\xml\\__init__.py',
@@ -1238,4 +1248,10 @@
   ('zipimport',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\zipimport.py',
+   'PYMODULE'),
+  ('zstandard',
+   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\zstandard\\__init__.py',
+   'PYMODULE'),
+  ('zstandard.backend_cffi',
+   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\zstandard\\backend_cffi.py',
    'PYMODULE')])
