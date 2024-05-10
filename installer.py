@@ -168,7 +168,7 @@ def run_installer():
             threading.Thread(
                 target=download_and_extract,
                 args=(
-                    "https://github.com/kristiangoystdal/OV_Door/raw/main/Windows/dist/Omega_Verksted.zip",
+                    "https://github.com/kristiangoystdal/OV_Door/blob/main/dist/Omega_Verksted.zip",
                     os.path.join(os.environ["PROGRAMFILES"], "Omega_Verksted"),
                     progress_bar,
                     status_label,
