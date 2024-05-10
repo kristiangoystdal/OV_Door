@@ -26,7 +26,13 @@ def download_and_extract(
         response = requests.get(url, stream=True)
         response.raise_for_status()  # Raises an HTTPError for bad responses
 
-        total_length = int(response.headers.get("content-length"))
+        total_length = response.headers.get("content-length")
+
+        if total_length is not None:
+            total_length = int(total_length)
+        else:
+            total_length = 0  # You might consider a different approach here if needed
+
         downloaded = 0
         start_time = time.time()
 
@@ -35,10 +41,15 @@ def download_and_extract(
                 if chunk:  # filter out keep-alive new chunks
                     f.write(chunk)
                     downloaded += len(chunk)
-                    elapsed_time = time.time() - start_time
-                    percent_done = int((downloaded / total_length) * 100)
-                    progress_bar["value"] = percent_done
-                    status_label.config(text=f"Downloading... {percent_done}% complete")
+                    if total_length > 0:
+                        elapsed_time = time.time() - start_time
+                        percent_done = int((downloaded / total_length) * 100)
+                        progress_bar["value"] = percent_done
+                        status_label.config(
+                            text=f"Downloading... {percent_done}% complete"
+                        )
+                    else:
+                        status_label.config(text="Downloading... size unknown")
                     root.update_idletasks()
 
         status_label.config(text="Extracting files...")
@@ -168,7 +179,7 @@ def run_installer():
             threading.Thread(
                 target=download_and_extract,
                 args=(
-                    "https://github.com/kristiangoystdal/OV_Door/blob/main/dist/Omega_Verksted.zip",
+                    "https://github.com/kristiangoystdal/OV_Door/raw/main/dist/Omega_Verksted.zip",
                     os.path.join(os.environ["PROGRAMFILES"], "Omega_Verksted"),
                     progress_bar,
                     status_label,
