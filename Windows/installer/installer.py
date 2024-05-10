@@ -12,9 +12,17 @@ import sys
 
 
 def download_and_extract(
-    url, extract_to, progress_bar, status_label, install_button, finish_button
+    url,
+    extract_to,
+    progress_bar,
+    status_label,
+    install_button,
+    finish_button,
+    final_actions,
 ):
     try:
+        status_label.config(text="Starting download...")
+        root.update_idletasks()
         response = requests.get(url, stream=True)
         response.raise_for_status()  # Raises an HTTPError for bad responses
 
@@ -43,6 +51,7 @@ def download_and_extract(
             status_label,
             install_button,
             finish_button,
+            final_actions,
         )
 
     except requests.RequestException as e:
@@ -56,32 +65,66 @@ def download_and_extract(
 
 
 def extract_files(
-    zip_path, extract_to, progress_bar, status_label, install_button, finish_button
+    zip_path,
+    extract_to,
+    progress_bar,
+    status_label,
+    install_button,
+    finish_button,
+    final_actions,
 ):
-    with zipfile.ZipFile(zip_path) as z:
-        total_files = len(z.infolist())
-        for i, file_info in enumerate(z.infolist(), start=1):
-            z.extract(file_info, path=extract_to)
-            if i % 10 == 0 or i == total_files:
-                progress_bar["value"] = 50 + 50 * (i / total_files)
-                status_label.config(
-                    text=f"Extracting files... {int(50 + 50 * (i / total_files))}% complete"
-                )
-                root.update_idletasks()
+    try:
+        with zipfile.ZipFile(zip_path) as z:
+            total_files = len(z.infolist())
+            for i, file_info in enumerate(z.infolist(), start=1):
+                try:
+                    z.extract(file_info, path=extract_to)
+                    if i % 10 == 0 or i == total_files:
+                        progress_bar["value"] = 50 + 50 * (i / total_files)
+                        status_label.config(
+                            text=f"Extracting files... {int(50 + 50 * (i / total_files))}% complete"
+                        )
+                        root.update_idletasks()
+                except PermissionError as e:
+                    status_label.config(text="Error: File in use!")
+                    messagebox.showerror(
+                        "Installation Error",
+                        "Please close Omega Verksted or any other program using its files and try again.",
+                    )
+                    install_button.config(state=tk.NORMAL)
+                    return  # Stop further execution and keep the button enabled for retry
 
-    os.remove(zip_path)
-    status_label.config(text="Installation completed successfully!")
-    add_to_registry()
-    install_button.pack_forget()  # Remove the install button
-    finish_button.pack(fill="x")  # Show the finish button
+        os.remove(zip_path)
+        status_label.config(text="Installation completed successfully!")
+        add_to_registry()
+        install_button.pack_forget()  # Remove the install button
+        finish_button.pack(fill="x")  # Show the finish button
+        final_actions()  # Call final actions after all operations are done
+    except Exception as e:
+        status_label.config(text=f"Extraction failed: {e}")
+        messagebox.showerror("Installation", f"Extraction failed: {e}")
+        install_button.config(state=tk.NORMAL)
+
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for development and for PyInstaller"""
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 
 def run_installer():
     if is_admin():
         global root
         root = tk.Tk()
-        root.title("Installer")
+        root.title("Installer for Omega Verksted")
         root.geometry("350x250")  # Increased size to accommodate checkbox
+        icon_path = resource_path("ov_logo.ico")
+        root.iconbitmap(icon_path)
+        root.resizable(False, False)
 
         frame = tk.Frame(root)
         frame.pack(pady=20, padx=20)
@@ -94,31 +137,35 @@ def run_installer():
         )
         progress_bar.pack(pady=10)
 
-        launch_var = (
-            IntVar()
-        )  # This variable will hold the state of the checkbox (1 for checked, 0 for unchecked)
+        launch_var = IntVar(value=1)
         launch_check = Checkbutton(
             frame, text="Launch application after installing", variable=launch_var
         )
         launch_check.pack(pady=10)
 
         install_button = tk.Button(frame, text="Install")
-        finish_button = tk.Button(
-            frame, text="Finish", command=root.quit
-        )  # Finish button to close the application
+        finish_button = tk.Button(frame, text="Finish", command=root.quit)
 
         def final_actions():
-            if launch_var.get() == 1:  # Check if the checkbox is checked
+            if launch_var.get() == 1:
                 executable_path = os.path.join(
                     os.environ["PROGRAMFILES"], "Omega_Verksted", "Omega Verksted.exe"
                 )
-                os.startfile(
-                    executable_path
-                )  # Use os.startfile to launch the executable
-            root.quit()  # Close the installer
+                os.startfile(executable_path)
+            root.quit()
 
-        install_button.config(
-            command=lambda: threading.Thread(
+        # Update the start_installation definition to pass final_actions as a parameter
+        def start_installation():
+            # Disable the install button immediately to prevent multiple presses
+            install_button.config(state=tk.DISABLED)
+
+            def on_thread_complete():
+                # This function will be called when the thread completes
+                root.update_idletasks()  # Update UI tasks if any pending
+                # Consider re-enabling the button here if needed, depending on your application logic
+                # install_button.config(state=tk.NORMAL)
+
+            threading.Thread(
                 target=download_and_extract,
                 args=(
                     "https://github.com/kristiangoystdal/OV_Door/raw/main/Windows/dist/Omega_Verksted.zip",
@@ -127,15 +174,18 @@ def run_installer():
                     status_label,
                     install_button,
                     finish_button,
-                    final_actions,  # Pass the final_actions function to be called after installation
+                    final_actions,
                 ),
+                # Adding a callback to run on the main thread after the thread completes
+                daemon=True,  # Optional: makes the thread exit when the main program exits
             ).start()
-        )
+            # You could use a mechanism here to check when the thread is done if needed, such as a flag or event
+
+        install_button.config(command=start_installation)
         install_button.pack(fill="x")
 
         root.mainloop()
     else:
-        # Re-run the program with admin rights
         ctypes.windll.shell32.ShellExecuteW(
             None, "runas", sys.executable, " ".join(sys.argv), None, 1
         )
