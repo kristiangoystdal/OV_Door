@@ -235,6 +235,7 @@ def add_to_registry():
     reg.SetValueEx(
         app_key, "Publisher", 0, reg.REG_SZ, "Simulation Edge"
     )  # Optional: Customize as needed
+    reg.SetValueEx(app_key, "DisplayIcon", 0, reg.REG_SZ, "ov_logo.ico")
 
     reg.CloseKey(app_key)
     reg.CloseKey(key)
