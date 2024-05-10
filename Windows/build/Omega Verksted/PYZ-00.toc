@@ -663,15 +663,6 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\opcode.py',
    'PYMODULE'),
-  ('ordlookup',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\ordlookup\\__init__.py',
-   'PYMODULE'),
-  ('ordlookup.oleaut32',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\ordlookup\\oleaut32.py',
-   'PYMODULE'),
-  ('ordlookup.ws2_32',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\ordlookup\\ws2_32.py',
-   'PYMODULE'),
   ('packaging',
    'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\packaging\\__init__.py',
    'PYMODULE'),
@@ -717,9 +708,6 @@
   ('pathlib',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\pathlib.py',
-   'PYMODULE'),
-  ('pefile',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\pefile.py',
    'PYMODULE'),
   ('pickle',
    'C:\\Program '
@@ -875,18 +863,6 @@
   ('pprint',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\pprint.py',
-   'PYMODULE'),
-  ('psutil',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\psutil\\__init__.py',
-   'PYMODULE'),
-  ('psutil._common',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\psutil\\_common.py',
-   'PYMODULE'),
-  ('psutil._compat',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\psutil\\_compat.py',
-   'PYMODULE'),
-  ('psutil._pswindows',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\psutil\\_pswindows.py',
    'PYMODULE'),
   ('py_compile',
    'C:\\Program '
@@ -1089,9 +1065,6 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\typing.py',
    'PYMODULE'),
-  ('updates',
-   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\updates.py',
-   'PYMODULE'),
   ('urllib',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\__init__.py',
@@ -1213,10 +1186,6 @@
    'PYMODULE'),
   ('user_interactions',
    'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\Windows\\user_interactions.py',
-   'PYMODULE'),
-  ('uuid',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\uuid.py',
    'PYMODULE'),
   ('xml',
    'C:\\Program '
