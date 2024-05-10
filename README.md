@@ -28,4 +28,7 @@ For automatic startup when booting your computer, enable "Run at startup" by rig
 ## Contributing
 Contributions are welcome. Please fork the repository and submit pull requests for any proposed changes or enhancements.
 
+### Building the application
+While testing and developing new features and such, use the "BuildExe.bat" file to compile the main.py file. The newly made folder would be named "Omega Verksted" and would be located in the dist folder.
+
 
