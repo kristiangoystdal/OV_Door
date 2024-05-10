@@ -10,8 +10,6 @@ import pystray
 from io import BytesIO
 from datetime import datetime
 
-
-from updates import *
 from user_interactions import *
 
 
@@ -38,7 +36,6 @@ def update_icon_based_on_api(icon, base_icon_path):
     base_icon = Image.open(BytesIO(requests.get(base_icon_path).content)).convert(
         "RGBA"
     )
-    last_status = None
 
     while True:
         try:
@@ -125,7 +122,6 @@ def remove_from_startup():
 
 def create_tray_icon():
     menu = pystray.Menu(
-        item("Check for Updates", lambda icon: check_for_updates()),
         item("Open Website", open_website),
         item(
             "Run at Startup",
