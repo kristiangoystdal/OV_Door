@@ -8,7 +8,7 @@ pyinstaller --clean --noupx --windowed --icon="C:\Users\krisg\Documents\Git\OV_D
 echo Build process complete.
 
 echo Compressing the dist folder...
-PowerShell -Command "Compress-Archive -Path '.\dist\Omega Verksted\*' -DestinationPath '.\Omega_Verksted.zip'"
+PowerShell -Command "Compress-Archive -Path '.\dist\Omega Verksted\*' -DestinationPath '.\dist\Omega_Verksted.zip'"
 
 echo Compression complete.
 pause
