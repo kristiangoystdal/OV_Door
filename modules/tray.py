@@ -44,7 +44,9 @@ def create_tray_icon():
         ),
         item("Quit", quit_program),
     )
-    base_icon_url = "https://raw.githubusercontent.com/kristiangoystdal/OV_Door/main/Windows/ov_logo.ico"
+    base_icon_url = (
+        "https://raw.githubusercontent.com/kristiangoystdal/OV_Door/main/ov_logo.ico"
+    )
     icon_img = Image.open(BytesIO(requests.get(base_icon_url).content))
     icon = Icon("omega_icon", icon_img, "Omega Verksted Door Status", menu)
     threading.Thread(
