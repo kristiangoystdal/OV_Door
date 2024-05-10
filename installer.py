@@ -232,9 +232,7 @@ def add_to_registry():
     reg.SetValueEx(app_key, "DisplayName", 0, reg.REG_SZ, app_name)
     reg.SetValueEx(app_key, "InstallLocation", 0, reg.REG_SZ, install_path)
     reg.SetValueEx(app_key, "UninstallString", 0, reg.REG_SZ, uninstall_command)
-    reg.SetValueEx(
-        app_key, "Publisher", 0, reg.REG_SZ, "Simulation Edge"
-    )  # Optional: Customize as needed
+    reg.SetValueEx(app_key, "Publisher", 0, reg.REG_SZ, "Simulation Edge")
     reg.SetValueEx(app_key, "DisplayIcon", 0, reg.REG_SZ, "ov_logo.ico")
 
     reg.CloseKey(app_key)
