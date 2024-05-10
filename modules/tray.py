@@ -35,7 +35,7 @@ def toggle_startup(icon, item):
 
 def create_tray_icon():
     menu = pystray.Menu(
-        item("Open GitHub", open_github),
+        item("Check out GitHub", open_github),
         item("Open Website", open_website),
         item(
             "Run at Startup",
