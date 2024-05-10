@@ -5,7 +5,7 @@ a = Analysis(
     ['installer.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:\\Users\\krisg\\Documents\\Git\\OV_Door\\installer\\ov_logo.ico', '.')],
+    datas=[('C:\\Users\\krisg\\Documents\\Git\\OV_Door\\ov_logo.ico', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
