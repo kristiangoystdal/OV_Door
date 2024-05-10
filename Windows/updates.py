@@ -7,22 +7,39 @@ import requests
 import tempfile
 import psutil
 import pefile
+import json
 
 
-def get_exe_version(file_path):
+def get_version_from_json(url):
     try:
-        pe = pefile.PE(file_path)
-        if hasattr(pe, "VS_FIXEDFILEINFO"):
-            ms = pe.VS_FIXEDFILEINFO[0]
-            version = f"{ms.FileVersionMS >> 16 & 0xffff}.{ms.FileVersionMS & 0xffff}.{ms.FileVersionLS >> 16 & 0xffff}.{ms.FileVersionLS & 0xffff}"
-            pe.close()
-            return version
-        else:
-            pe.close()
-            return "0.0.0.0"  # Return a default version if no version info is found
-    except Exception as e:
-        print(f"Error reading version from {file_path}: {e}")
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        data = json.loads(response.text)
+        return data["version"]
+    except requests.RequestException as e:
+        print(f"Failed to fetch version from {url}: {e}")
         return "0.0.0.0"  # Return a default version on error
+    except json.JSONDecodeError:
+        print("Failed to decode JSON from the response")
+        return "0.0.0.0"  # Return a default version on error
+
+
+def check_for_updates():
+    current_version = "1.0.1"  # The version number stored in the script
+    version_url = "https://raw.githubusercontent.com/kristiangoystdal/OV_Door/main/Windows/data.json"
+    latest_version = get_version_from_json(version_url)
+
+    if latest_version > current_version:
+        latest_version_url = "https://github.com/kristiangoystdal/OV_Door/blob/main/Windows/dist/Omega%20Verksted.exe?raw=true"
+        temp_exe_path = download_new_version(latest_version_url)
+        if user_confirm(
+            f"Update available. Version {latest_version} is newer than {current_version}. Update now?"
+        ):
+            apply_update(temp_exe_path)
+        else:
+            os.unlink(temp_exe_path)  # Remove the downloaded file if not updating
+    else:
+        show_message("No updates are available.")
 
 
 def user_confirm(message):
@@ -71,24 +88,6 @@ def apply_update(new_exe_path):
             [current_exe_path, "--error", str(e)],
             creationflags=subprocess.CREATE_NO_WINDOW,
         )
-
-
-def check_for_updates():
-    current_version = get_exe_version(sys.executable)
-    latest_version_url = "https://github.com/kristiangoystdal/OV_Door/blob/main/Windows/dist/Omega%20Verksted.exe"
-    temp_exe_path = download_new_version(latest_version_url)
-    latest_version = get_exe_version(temp_exe_path)
-
-    if latest_version > current_version:
-        if user_confirm(
-            f"Update available. Version {latest_version} is newer than {current_version}. Update now?"
-        ):
-            apply_update(temp_exe_path)
-        else:
-            os.unlink(temp_exe_path)  # Remove the downloaded file if not updating
-    else:
-        show_message("No updates are available.")
-        os.unlink(temp_exe_path)  # Remove the downloaded file
 
 
 # This function can be called to start the update process.

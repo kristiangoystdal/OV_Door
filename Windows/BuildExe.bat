@@ -1,21 +1,10 @@
 @echo off
+echo Setting up environment...
+set PATH=%PATH%;C:\Users\krisg\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts
 
-rem Set the path to the Python interpreter
-set "PYTHON_EXECUTABLE=python.exe"
+echo Building the executable with PyInstaller...
+pyinstaller --onefile --windowed --icon="C:\Users\krisg\Documents\Git\OV_Door\Windows\ov_logo.ico" --name="Omega Verksted" ov_door.py
 
-rem Set the path to the icon file
-set "ICON_FILE=C:\Users\krisg\Documents\Git\OV_Door\Windows\ov_logo.ico"
-
-rem Remove the 'dist' directory if it exists
-if exist dist rmdir /s /q dist
-
-rem Build the executable using PyInstaller
-echo Building the Omega Verksted executable using PyInstaller...
-"%PYTHON_EXECUTABLE%" -m PyInstaller ^
-    --onefile ^
-    --noconsole ^
-    --name "Omega Verksted" ^
-    --icon "%ICON_FILE%" ^
-    ov_door.py
-
+echo Build process complete.
 pause
+
