@@ -2,7 +2,7 @@
 
 ## Overview
 
-OV_Door is a Python-based application for Windows, specifically designed for managing door access controls at Omega Verksted. This tool integrates seamlessly into the system tray of Windows computers, providing efficient and unobtrusive management of access controls with easy startup management.
+OV_Door is a Python-based application for Windows, specifically designed for showcasing door status at Omega Verksted. This tool integrates seamlessly into the system tray of Windows computers, providing efficient and unobtrusive way to check the status.
 
 ## Features
 
@@ -21,7 +21,7 @@ OV_Door is a Python-based application for Windows, specifically designed for man
 1. Download the "Omega Verksted.zip" folder.
 2. Unzip and run installer_omega_verksted.exe to install the application. Make sure to check the box to launch the application after installation if desired.
 
-### Running the Application
+### Running the Application manually
 
 - Navigate to `C:\Program Files\Omega_Verksted` and run `Omega Verksted.exe`.
 - To ensure the application runs at system startup, enable "Run at startup" by right-clicking the system tray icon and selecting the option.
