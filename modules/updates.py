@@ -1,13 +1,10 @@
 import os
-import shutil
 import requests
-import zipfile
-import io
-from tkinter import messagebox
 import subprocess
 import sys
 import tkinter as tk
 import threading
+from tkinter import messagebox
 from win32api import GetFileVersionInfo, LOWORD, HIWORD
 from modules.tools import resource_path  # Ensure this is correctly imported
 
@@ -100,7 +97,7 @@ def start_gui():
 def update_version(label_feedback, button_update):
     try:
         # Define the URL of the GitHub repository
-        url = "https://github.com/kristiangoystdal/OV_Door/blob/main/dist/Omega_Verksted.zip"
+        url = "https://github.com/kristiangoystdal/OV_Door/raw/main/dist/Omega_Verksted.zip"
         label_feedback.config(text="Downloading update...")
         button_update["state"] = "disabled"
 
@@ -121,10 +118,10 @@ def update_version(label_feedback, button_update):
         batch_script = f"""
         @echo off
         echo Stopping Omega Verksted application...
-        taskkill /f /im "Omega Verksted.exe"
+        taskkill /f /im "Omega Verksted.exe" 2>nul
         timeout /t 5 /nobreak
         echo Extracting update...
-        powershell -Command "Expand-Archive -Path '{zip_path}' -DestinationPath '{app_executable_dir}' -Force"
+        tar -xf "{zip_path}" -C "{app_executable_dir}"
         echo Update completed. Restarting application...
         start "" "{os.path.join(app_executable_dir, 'Omega Verksted.exe')}"
         exit
@@ -150,8 +147,3 @@ def update_version(label_feedback, button_update):
         print(f"An error occurred: {e}")
         label_feedback.config(text=f"An error occurred: {e}")
         button_update["state"] = "normal"
-
-
-# This function can now be called directly from another script.
-if __name__ == "__main__":
-    start_gui()
