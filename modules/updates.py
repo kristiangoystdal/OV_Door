@@ -134,7 +134,10 @@ def update_version(label_feedback, button_update):
 
         # Execute the batch script
         print("Executing batch script for update process.")
-        subprocess.Popen(batch_file_path, shell=True)
+        subprocess.Popen(
+            ["cmd.exe", "/K", batch_file_path],
+            creationflags=subprocess.CREATE_NEW_CONSOLE,
+        )
         sys.exit()
 
     except requests.RequestException as e:
