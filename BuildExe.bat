@@ -2,17 +2,24 @@
 echo Setting up environment...
 set PATH=%PATH%;C:\Users\krisg\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts
 
-echo Building the executable with PyInstaller...
-pyinstaller --clean --noupx --windowed --icon="C:\Users\krisg\Documents\Git\OV_Door\ov_logo.ico" --name="Omega Verksted" main.py
-
-echo Build process complete.
-
-echo Moving spec file to spec folder...
-move ".\Omega Verksted.spec" ".\specs\Omega Verksted.spec"
-if %ERRORLEVEL% neq 0 (
-    echo Error moving file.
+echo Checking if spec file exists...
+if exist ".\specs\Omega Verksted.spec" (
+    echo Spec file found.
 ) else (
-    echo File moved successfully.
+    echo Spec file not found! Please check the path and filename.
+    pause
+    exit /b
+)
+
+echo Building the executable with PyInstaller...
+pyinstaller ".\specs\Omega Verksted.spec"
+
+if %ERRORLEVEL% neq 0 (
+    echo Build process failed.
+    pause
+    exit /b
+) else (
+    echo Build process complete.
 )
 
 echo Checking if dist folder exists...
