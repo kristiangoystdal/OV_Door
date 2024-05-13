@@ -9,6 +9,7 @@ import threading
 import time
 import ctypes
 import sys
+import modules.tools as tools
 
 
 def download_and_extract(
@@ -117,23 +118,13 @@ def extract_files(
         install_button.config(state=tk.NORMAL)
 
 
-def resource_path(relative_path):
-    """Get absolute path to resource, works for development and for PyInstaller"""
-    try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
-
-
 def run_installer():
-    if is_admin():
+    if tools.is_admin():
         global root
         root = tk.Tk()
         root.title("Installer for Omega Verksted")
         root.geometry("350x250")  # Increased size to accommodate checkbox
-        icon_path = resource_path("ov_logo.ico")
+        icon_path = tools.resource_path("ov_logo.ico")
         root.iconbitmap(icon_path)
         root.resizable(False, False)
 
@@ -202,19 +193,10 @@ def run_installer():
         )
 
 
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
-
-
 def add_to_registry():
     app_name = "Omega Verksted"
     install_path = os.path.join(os.environ["PROGRAMFILES"], "Omega Verksted")
-    uninstaller_path = os.path.join(
-        install_path, "uninstaller.exe"
-    )  # Assuming the uninstaller is named 'uninstaller.exe'
+    uninstaller_path = os.path.join(install_path, "uninstaller.exe")
 
     # Connect to the registry and create a new key under Uninstall
     key = reg.OpenKey(
@@ -233,7 +215,9 @@ def add_to_registry():
     reg.SetValueEx(app_key, "InstallLocation", 0, reg.REG_SZ, install_path)
     reg.SetValueEx(app_key, "UninstallString", 0, reg.REG_SZ, uninstall_command)
     reg.SetValueEx(app_key, "Publisher", 0, reg.REG_SZ, "Simulation Edge")
-    reg.SetValueEx(app_key, "DisplayIcon", 0, reg.REG_SZ, "ov_logo.ico")
+    reg.SetValueEx(
+        app_key, "DisplayIcon", 0, reg.REG_SZ, tools.resource_path("ov_logo.ico")
+    )
 
     reg.CloseKey(app_key)
     reg.CloseKey(key)

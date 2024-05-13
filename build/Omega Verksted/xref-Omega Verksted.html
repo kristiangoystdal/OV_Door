@@ -2722,6 +2722,8 @@ imported by:
  &#8226;   <a href="#urllib3.util.url">urllib3.util.url</a>
  &#8226;   <a href="#urllib3.util.util">urllib3.util.util</a>
  &#8226;   <a href="#urllib3.util.wait">urllib3.util.wait</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
+ &#8226;   <a href="#zstandard.backend_cffi">zstandard.backend_cffi</a>
 
   </div>
 
@@ -3891,6 +3893,7 @@ imported by:
  &#8226;   <a href="#tarfile">tarfile</a>
  &#8226;   <a href="#tokenize">tokenize</a>
  &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
 
   </div>
 
@@ -4692,6 +4695,7 @@ imports:
 imported by:
     <a href="#ctypes._endian">ctypes._endian</a>
  &#8226;   <a href="#ctypes.wintypes">ctypes.wintypes</a>
+ &#8226;   <a href="#modules.tools">modules.tools</a>
  &#8226;   <a href="#packaging._manylinux">packaging._manylinux</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging._manylinux">pkg_resources._vendor.packaging._manylinux</a>
  &#8226;   <a href="#pkg_resources._vendor.platformdirs.windows">pkg_resources._vendor.platformdirs.windows</a>
@@ -9148,6 +9152,7 @@ imported by:
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#modules.icon">modules.icon</a>
  &#8226;   <a href="#modules.tray">modules.tray</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pickle">pickle</a>
@@ -9184,6 +9189,8 @@ imported by:
  &#8226;   <a href="#xml.sax.saxutils">xml.sax.saxutils</a>
  &#8226;   <a href="#zipfile">zipfile</a>
  &#8226;   <a href="#zipfile._path">zipfile._path</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
+ &#8226;   <a href="#zstandard.backend_cffi">zstandard.backend_cffi</a>
 
   </div>
 
@@ -9598,8 +9605,10 @@ imported by:
 imported by:
     <a href="#modules.icon">modules.icon</a>
  &#8226;   <a href="#modules.startup">modules.startup</a>
+ &#8226;   <a href="#modules.tools">modules.tools</a>
  &#8226;   <a href="#modules.tray">modules.tray</a>
- &#8226;   <a href="#modules.user_interactions">modules.user_interactions</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
+ &#8226;   <a href="#modules.user_interface">modules.user_interface</a>
 
   </div>
 
@@ -9646,6 +9655,25 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="modules.tools"></a>
+  <a target="code" href="///C:/Users/krisg/Documents/Git/OV_Door/modules/tools.py" type="text/plain"><tt>modules.tools</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#ctypes">ctypes</a>
+ &#8226;   <a href="#modules">modules</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#modules.updates">modules.updates</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="modules.tray"></a>
   <a target="code" href="///C:/Users/krisg/Documents/Git/OV_Door/modules/tray.py" type="text/plain"><tt>modules.tray</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -9656,7 +9684,8 @@ imports:
  &#8226;   <a href="#modules">modules</a>
  &#8226;   <a href="#modules.icon">modules.icon</a>
  &#8226;   <a href="#modules.startup">modules.startup</a>
- &#8226;   <a href="#modules.user_interactions">modules.user_interactions</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
+ &#8226;   <a href="#modules.user_interface">modules.user_interface</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#pystray">pystray</a>
  &#8226;   <a href="#requests">requests</a>
@@ -9672,8 +9701,36 @@ imported by:
 </div>
 
 <div class="node">
-  <a name="modules.user_interactions"></a>
-  <a target="code" href="///C:/Users/krisg/Documents/Git/OV_Door/modules/user_interactions.py" type="text/plain"><tt>modules.user_interactions</tt></a>
+  <a name="modules.updates"></a>
+  <a target="code" href="///C:/Users/krisg/Documents/Git/OV_Door/modules/updates.py" type="text/plain"><tt>modules.updates</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#io">io</a>
+ &#8226;   <a href="#modules">modules</a>
+ &#8226;   <a href="#modules.tools">modules.tools</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#requests">requests</a>
+ &#8226;   <a href="#shutil">shutil</a>
+ &#8226;   <a href="#subprocess">subprocess</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#tkinter">tkinter</a>
+ &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
+ &#8226;   <a href="#win32api">win32api</a>
+ &#8226;   <a href="#zipfile">zipfile</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#modules.tray">modules.tray</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="modules.user_interface"></a>
+  <a target="code" href="///C:/Users/krisg/Documents/Git/OV_Door/modules/user_interface.py" type="text/plain"><tt>modules.user_interface</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#modules">modules</a>
@@ -9982,7 +10039,9 @@ imported by:
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#mimetypes">mimetypes</a>
  &#8226;   <a href="#modules.startup">modules.startup</a>
+ &#8226;   <a href="#modules.tools">modules.tools</a>
  &#8226;   <a href="#modules.tray">modules.tray</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#netrc">netrc</a>
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#ntpath">ntpath</a>
@@ -10039,6 +10098,8 @@ imported by:
  &#8226;   <a href="#xml.sax">xml.sax</a>
  &#8226;   <a href="#xml.sax.saxutils">xml.sax.saxutils</a>
  &#8226;   <a href="#zipfile">zipfile</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
+ &#8226;   <a href="#zstandard.backend_cffi">zstandard.backend_cffi</a>
 
   </div>
 
@@ -11741,6 +11802,7 @@ imported by:
  &#8226;   <a href="#pkg_resources">pkg_resources</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging.markers">pkg_resources._vendor.packaging.markers</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging.tags">pkg_resources._vendor.packaging.tags</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
 
   </div>
 
@@ -12606,6 +12668,7 @@ imports:
 imported by:
     <a href="#modules.icon">modules.icon</a>
  &#8226;   <a href="#modules.tray">modules.tray</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#requests">requests</a>
  &#8226;   <a href="#requests.__version__">requests.__version__</a>
  &#8226;   <a href="#requests._internal_utils">requests._internal_utils</a>
@@ -13129,6 +13192,7 @@ imported by:
     <a href="#PIL.EpsImagePlugin">PIL.EpsImagePlugin</a>
  &#8226;   <a href="#PIL.ImageShow">PIL.ImageShow</a>
  &#8226;   <a href="#argparse">argparse</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#pkg_resources._vendor.backports.tarfile">pkg_resources._vendor.backports.tarfile</a>
  &#8226;   <a href="#pkg_resources._vendor.jaraco.context">pkg_resources._vendor.jaraco.context</a>
  &#8226;   <a href="#pystray._util.notify_dbus">pystray._util.notify_dbus</a>
@@ -13536,6 +13600,7 @@ imported by:
  &#8226;   <a href="#PIL.ImageShow">PIL.ImageShow</a>
  &#8226;   <a href="#PIL.JpegImagePlugin">PIL.JpegImagePlugin</a>
  &#8226;   <a href="#_aix_support">_aix_support</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#packaging._musllinux">packaging._musllinux</a>
  &#8226;   <a href="#packaging.tags">packaging.tags</a>
@@ -13612,6 +13677,8 @@ imported by:
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#mimetypes">mimetypes</a>
  &#8226;   <a href="#modules.startup">modules.startup</a>
+ &#8226;   <a href="#modules.tools">modules.tools</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#packaging._manylinux">packaging._manylinux</a>
@@ -13852,6 +13919,7 @@ imported by:
  &#8226;   <a href="#importlib.util">importlib.util</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#modules.tray">modules.tray</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#pystray._base">pystray._base</a>
  &#8226;   <a href="#pystray._win32">pystray._win32</a>
  &#8226;   <a href="#pystray._xorg">pystray._xorg</a>
@@ -13933,7 +14001,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#modules.user_interactions">modules.user_interactions</a>
+    <a href="#modules.updates">modules.updates</a>
+ &#8226;   <a href="#modules.user_interface">modules.user_interface</a>
  &#8226;   <a href="#tkinter.commondialog">tkinter.commondialog</a>
  &#8226;   <a href="#tkinter.constants">tkinter.constants</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
@@ -13985,7 +14054,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#modules.user_interactions">modules.user_interactions</a>
+    <a href="#modules.updates">modules.updates</a>
+ &#8226;   <a href="#modules.user_interface">modules.user_interface</a>
  &#8226;   <a href="#tkinter">tkinter</a>
 
   </div>
@@ -14264,6 +14334,7 @@ imported by:
  &#8226;   <a href="#urllib3.util.timeout">urllib3.util.timeout</a>
  &#8226;   <a href="#urllib3.util.url">urllib3.util.url</a>
  &#8226;   <a href="#urllib3.util.util">urllib3.util.util</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
 
   </div>
 
@@ -15564,6 +15635,16 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="win32api"></a>
+  <tt>win32api</tt> <span class="moduletype"><tt>C:\Users\krisg\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\win32\win32api.pyd</tt></span>  <div class="import">
+imported by:
+    <a href="#modules.updates">modules.updates</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="winreg"></a>
   <tt>winreg</tt> <span class="moduletype"><i>(builtin module)</i></span>  <div class="import">
 imported by:
@@ -15801,6 +15882,7 @@ imports:
 imported by:
     <a href="#importlib.metadata">importlib.metadata</a>
  &#8226;   <a href="#importlib.resources.readers">importlib.resources.readers</a>
+ &#8226;   <a href="#modules.updates">modules.updates</a>
  &#8226;   <a href="#pkg_resources">pkg_resources</a>
  &#8226;   <a href="#pkg_resources._vendor.importlib_resources._compat">pkg_resources._vendor.importlib_resources._compat</a>
  &#8226;   <a href="#pkg_resources._vendor.zipp">pkg_resources._vendor.zipp</a>
@@ -15900,11 +15982,88 @@ imported by:
 
 <div class="node">
   <a name="zstandard"></a>
-  <a target="code" href="" type="text/plain"><tt>zstandard</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
+  <a target="code" href="///C:/Users/krisg/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/site-packages/zstandard/__init__.py" type="text/plain"><tt>zstandard</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#builtins">builtins</a>
+ &#8226;   <a href="#io">io</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#zstandard.backend_c">zstandard.backend_c</a>
+ &#8226;   <a href="#zstandard.backend_cffi">zstandard.backend_cffi</a>
+ &#8226;   <a href="#zstandard.backend_rust">zstandard.backend_rust</a>
+
+  </div>
+  <div class="import">
 imported by:
     <a href="#urllib3.response">urllib3.response</a>
  &#8226;   <a href="#urllib3.util.request">urllib3.util.request</a>
+ &#8226;   <a href="#zstandard._cffi">zstandard._cffi</a>
+ &#8226;   <a href="#zstandard.backend_c">zstandard.backend_c</a>
+ &#8226;   <a href="#zstandard.backend_cffi">zstandard.backend_cffi</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="zstandard._cffi"></a>
+  <tt>zstandard._cffi</tt> <span class="moduletype"><tt>C:\Users\krisg\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\zstandard\_cffi.cp312-win_amd64.pyd</tt></span>  <div class="import">
+imports:
+    <a href="#zstandard">zstandard</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#zstandard.backend_cffi">zstandard.backend_cffi</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="zstandard.backend_c"></a>
+  <tt>zstandard.backend_c</tt> <span class="moduletype"><tt>C:\Users\krisg\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\zstandard\backend_c.cp312-win_amd64.pyd</tt></span>  <div class="import">
+imports:
+    <a href="#zstandard">zstandard</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#zstandard">zstandard</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="zstandard.backend_cffi"></a>
+  <a target="code" href="///C:/Users/krisg/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/site-packages/zstandard/backend_cffi.py" type="text/plain"><tt>zstandard.backend_cffi</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#io">io</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#zstandard">zstandard</a>
+ &#8226;   <a href="#zstandard._cffi">zstandard._cffi</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#zstandard">zstandard</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="zstandard.backend_rust"></a>
+  <a target="code" href="" type="text/plain"><tt>zstandard.backend_rust</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#zstandard">zstandard</a>
 
   </div>
 

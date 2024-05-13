@@ -1,5 +1,6 @@
 import sys
 import os
+import ctypes
 
 
 def resource_path(relative_path):
@@ -10,3 +11,12 @@ def resource_path(relative_path):
     except Exception:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
+
+
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+
