@@ -20,7 +20,7 @@ VSVersionInfo(
            StringStruct('InternalName', 'OmegaVerksted'),
            StringStruct('OriginalFilename', 'Omega Verksted.exe'),
            StringStruct('ProductName', 'Omega Verksted'),
-           StringStruct('ProductVersion', '1.0.0')])
+           StringStruct('ProductVersion', '1.1.0')])
       ]),
     VarFileInfo([VarStruct('Translation', [1033, 1200])])
   ]
