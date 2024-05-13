@@ -6,9 +6,10 @@ import os
 import pystray
 from io import BytesIO
 
-from modules.user_interactions import *
+from modules.user_interface import *
 from modules.startup import *
 from modules.icon import *
+from modules.updates import *
 
 
 def open_github():
@@ -33,8 +34,13 @@ def toggle_startup(icon, item):
         add_to_startup()
 
 
+def run_updater():
+    threading.Thread(target=start_gui, daemon=True).start()
+
+
 def create_tray_icon():
     menu = pystray.Menu(
+        item("Check for Updates", lambda: run_updater()),
         item("Check out GitHub", open_github),
         item("Open Website", open_website),
         item(
