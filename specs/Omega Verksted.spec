@@ -32,6 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    version='version.txt',
     icon=['C:\\Users\\krisg\\Documents\\Git\\OV_Door\\ov_logo.ico'],
 )
 coll = COLLECT(

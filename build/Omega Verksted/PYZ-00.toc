@@ -1247,10 +1247,4 @@
   ('zipimport',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\zipimport.py',
-   'PYMODULE'),
-  ('zstandard',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\zstandard\\__init__.py',
-   'PYMODULE'),
-  ('zstandard.backend_cffi',
-   'C:\\Users\\krisg\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\zstandard\\backend_cffi.py',
    'PYMODULE')])
