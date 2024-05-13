@@ -160,7 +160,7 @@ def run_installer():
         def final_actions():
             if launch_var.get() == 1:
                 executable_path = os.path.join(
-                    os.environ["PROGRAMFILES"], "Omega_Verksted", "Omega Verksted.exe"
+                    os.environ["PROGRAMFILES"], "Omega Verksted", "Omega Verksted.exe"
                 )
                 os.startfile(executable_path)
             root.quit()
