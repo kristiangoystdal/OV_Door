@@ -120,8 +120,18 @@ def update_version(label_feedback, button_update):
         echo Stopping Omega Verksted application...
         taskkill /f /im "Omega Verksted.exe" 2>nul
         timeout /t 5 /nobreak
+        echo Deleting old files...
+        del /q "{app_executable_dir}\\*"
+        if %errorlevel% neq 0 (
+            echo Deletion failed. Exiting.
+            exit /b %errorlevel%
+        )
         echo Extracting update...
         tar -xf "{zip_path}" -C "{app_executable_dir}"
+        if %errorlevel% neq 0 (
+            echo Extraction failed. Exiting.
+            exit /b %errorlevel%
+        )
         echo Update completed. Restarting application...
         start "" "{os.path.join(app_executable_dir, 'Omega Verksted.exe')}"
         exit
@@ -135,7 +145,7 @@ def update_version(label_feedback, button_update):
         # Execute the batch script
         print("Executing batch script for update process.")
         subprocess.Popen(
-            ["cmd.exe", "/K", batch_file_path],
+            ["cmd.exe", "/C", batch_file_path],
             creationflags=subprocess.CREATE_NEW_CONSOLE,
         )
         sys.exit()

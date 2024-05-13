@@ -16,7 +16,7 @@ VSVersionInfo(
           '040904B0',
           [StringStruct('CompanyName', 'Simulation Edge'),
            StringStruct('FileDescription', 'A tool for checking the status of Omega Verksted'),
-           StringStruct('FileVersion', '1.0.0'),
+           StringStruct('FileVersion', '1.1.0'),
            StringStruct('InternalName', 'OmegaVerksted'),
            StringStruct('OriginalFilename', 'Omega Verksted.exe'),
            StringStruct('ProductName', 'Omega Verksted'),
