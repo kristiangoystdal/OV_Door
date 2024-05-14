@@ -96,6 +96,9 @@ def start_gui():
         current_version = get_version_number(
             r"C:\Program Files\OmegaVerksted\Omega Verksted.exe"
         )
+        print(f"Current version: {current_version}")
+        print(f"Updated version: {updated_version}")
+
         feedback_text = compare_versions(
             current_version, updated_version, button_update
         )
