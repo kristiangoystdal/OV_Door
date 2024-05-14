@@ -38,7 +38,7 @@ def compare_versions(version1, version2, button_update):
         button_update["state"] = "normal"
         return f"Update available from version {version1} to {version2}"
     else:
-        button_update["state"] = "normal"
+        button_update["state"] = "disabled"
         return "Newest version is already installed"
 
 
@@ -96,9 +96,18 @@ def start_gui():
         current_version = get_version_number(
             sys.executable
         )  # Get the script's own version from the executable
-            
-        print(f"Current version: {current_version}")
-        print(f"Updated version: {updated_version}")
+
+        if not is_valid_version(current_version):
+            label_feedback.config(
+                text=f"Error retrieving current version: {current_version}"
+            )
+            return
+
+        if not is_valid_version(updated_version):
+            label_feedback.config(
+                text=f"Error retrieving updated version: {updated_version}"
+            )
+            return
 
         feedback_text = compare_versions(
             current_version, updated_version, button_update
@@ -132,23 +141,15 @@ def update_version(label_feedback, button_update):
         # Create a batch file to handle the update process
         batch_script = f"""
         @echo off
-        echo Stopping Omega Verksted application...
-        taskkill /f /im "Omega Verksted.exe" 2>nul
-        timeout /t 5 /nobreak
-        echo Deleting old files...
+        setlocal
+        taskkill /f /im "Omega Verksted.exe"
+        timeout /t 3 /nobreak
         del /q "{app_executable_dir}\\*"
-        if %errorlevel% neq 0 (
-            echo Deletion failed. Exiting.
-            exit /b %errorlevel%
-        )
-        echo Extracting update...
+        if %errorlevel% neq 0 exit /b %errorlevel%
         tar -xf "{zip_path}" -C "{app_executable_dir}"
-        if %errorlevel% neq 0 (
-            echo Extraction failed. Exiting.
-            exit /b %errorlevel%
-        )
-        echo Update completed. Restarting application...
+        if %errorlevel% neq 0 exit /b %errorlevel%
         start "" "{os.path.join(app_executable_dir, 'Omega Verksted.exe')}"
+        endlocal
         exit
         """
 
@@ -157,21 +158,28 @@ def update_version(label_feedback, button_update):
         with open(batch_file_path, "w") as batch_file:
             batch_file.write(batch_script)
 
-        # Execute the batch script
-        print("Executing batch script for update process.")
-        subprocess.Popen(
-            ["cmd.exe", "/C", batch_file_path],
-            creationflags=subprocess.CREATE_NEW_CONSOLE,
-        )
+        # Create a VBS script to run the batch file as an administrator
+        vbs_script = f"""
+        Set UAC = CreateObject("Shell.Application")
+        UAC.ShellExecute "cmd.exe", "/C {batch_file_path}", "", "runas", 1
+        """
+
+        # Write the VBS script to a temporary file
+        vbs_file_path = os.path.join(os.getenv("TEMP"), "run_as_admin.vbs")
+        with open(vbs_file_path, "w") as vbs_file:
+            vbs_file.write(vbs_script)
+
+        # Execute the VBS script to run the batch file as an administrator
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        subprocess.Popen(["cscript.exe", vbs_file_path], startupinfo=startupinfo)
         sys.exit()
 
     except requests.RequestException as e:
         messagebox.showerror("Update", f"Failed to download update: {e}")
-        print(f"Failed to download update: {e}")
         label_feedback.config(text=f"Failed to download update: {e}")
         button_update["state"] = "normal"
     except Exception as e:
         messagebox.showerror("Update", f"An error occurred: {e}")
-        print(f"An error occurred: {e}")
         label_feedback.config(text=f"An error occurred: {e}")
         button_update["state"] = "normal"
