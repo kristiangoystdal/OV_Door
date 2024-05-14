@@ -96,7 +96,7 @@ def start_gui():
         current_version = get_version_number(
             sys.executable
         )  # Get the script's own version from the executable
-
+            
         print(f"Current version: {current_version}")
         print(f"Updated version: {updated_version}")
 
