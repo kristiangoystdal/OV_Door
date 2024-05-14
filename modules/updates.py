@@ -83,7 +83,7 @@ def start_gui():
         github_url = "https://github.com/kristiangoystdal/OV_Door/raw/updates/dist/Omega%20Verksted/Omega%20Verksted.exe"
         updated_version = check_exe_version_on_github(github_url)
         current_version = get_version_number(
-            r"C:\Program Files\Omega Verksted\Omega Verksted.exe"
+            r"C:\Program Files\OmegaVerksted\Omega Verksted.exe"
         )
         feedback_text = compare_versions(
             current_version, updated_version, button_update
@@ -112,7 +112,7 @@ def update_version(label_feedback, button_update):
             f.write(response.content)
 
         # Path to the application executable directory
-        app_executable_dir = r"C:\Program Files\Omega Verksted"
+        app_executable_dir = r"C:\Program Files\OmegaVerksted"
 
         # Create a batch file to handle the update process
         batch_script = f"""

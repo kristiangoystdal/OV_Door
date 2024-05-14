@@ -399,6 +399,10 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\mimetypes.py',
    'PYMODULE'),
+  ('modules', '-', 'PYMODULE'),
+  ('modules.tools',
+   'C:\\Users\\krisg\\Documents\\Git\\OV_Door\\modules\\tools.py',
+   'PYMODULE'),
   ('netrc',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.1008.0_x64__qbz5n2kfra8p0\\Lib\\netrc.py',

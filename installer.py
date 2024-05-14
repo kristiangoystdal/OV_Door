@@ -151,7 +151,7 @@ def run_installer():
         def final_actions():
             if launch_var.get() == 1:
                 executable_path = os.path.join(
-                    os.environ["PROGRAMFILES"], "Omega Verksted", "Omega Verksted.exe"
+                    os.environ["PROGRAMFILES"], "OmegaVerksted", "Omega Verksted.exe"
                 )
                 os.startfile(executable_path)
             root.quit()
@@ -171,7 +171,7 @@ def run_installer():
                 target=download_and_extract,
                 args=(
                     "https://github.com/kristiangoystdal/OV_Door/raw/updates/dist/Omega_Verksted.zip",
-                    os.path.join(os.environ["PROGRAMFILES"], "Omega Verksted"),
+                    os.path.join(os.environ["PROGRAMFILES"], "OmegaVerksted"),
                     progress_bar,
                     status_label,
                     install_button,
@@ -195,7 +195,7 @@ def run_installer():
 
 def add_to_registry():
     app_name = "Omega Verksted"
-    install_path = os.path.join(os.environ["PROGRAMFILES"], "Omega Verksted")
+    install_path = os.path.join(os.environ["PROGRAMFILES"], "OmegaVerksted")
     uninstaller_path = os.path.join(install_path, "uninstaller.exe")
 
     # Connect to the registry and create a new key under Uninstall
@@ -231,7 +231,7 @@ def remove_from_registry():
             0,
             reg.KEY_WRITE,
         )
-        reg.DeleteKey(key, "Omega Verksted")
+        reg.DeleteKey(key, "OmegaVerksted")
         reg.CloseKey(key)
     except WindowsError as e:
         print(f"Failed to remove from registry: {e}")
