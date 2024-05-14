@@ -20,7 +20,18 @@ def get_version_number(filename):
         return f"No version information available: {e}"
 
 
+def is_valid_version(version):
+    try:
+        tuple(map(int, version.split(".")))
+        return True
+    except ValueError:
+        return False
+
+
 def compare_versions(version1, version2, button_update):
+    if not is_valid_version(version1) or not is_valid_version(version2):
+        button_update["state"] = "normal"
+        return f"Invalid version format: {version1} or {version2}"
     v1 = tuple(map(int, version1.split(".")))
     v2 = tuple(map(int, version2.split(".")))
     if v1 < v2:
