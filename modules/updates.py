@@ -94,8 +94,9 @@ def start_gui():
         github_url = "https://github.com/kristiangoystdal/OV_Door/raw/main/dist/Omega%20Verksted/Omega%20Verksted.exe"
         updated_version = check_exe_version_on_github(github_url)
         current_version = get_version_number(
-            r"C:\Program Files\OmegaVerksted\Omega Verksted.exe"
-        )
+            sys.executable
+        )  # Get the script's own version from the executable
+
         print(f"Current version: {current_version}")
         print(f"Updated version: {updated_version}")
 
