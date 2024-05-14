@@ -40,6 +40,7 @@ def run_updater(icon, item):
 
 def create_tray_icon():
     menu = Menu(
+        item("Omega Verksted Door Status", open_github),
         item("Check for Updates", run_updater),
         item("Check out GitHub", open_github),
         item("Open Website", open_website),
