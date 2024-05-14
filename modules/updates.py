@@ -80,7 +80,7 @@ def start_gui():
 
     def run_updater():
         label_feedback.config(text="Checking version...")
-        github_url = "https://github.com/kristiangoystdal/OV_Door/raw/updates/dist/Omega%20Verksted/Omega%20Verksted.exe"
+        github_url = "https://github.com/kristiangoystdal/OV_Door/raw/main/dist/Omega%20Verksted/Omega%20Verksted.exe"
         updated_version = check_exe_version_on_github(github_url)
         current_version = get_version_number(
             r"C:\Program Files\Omega Verksted\Omega Verksted.exe"
