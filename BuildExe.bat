@@ -4,7 +4,7 @@ set PATH=%PATH%;C:\Users\krisg\AppData\Local\Packages\PythonSoftwareFoundation.P
 
 echo Building the executable with PyInstaller...
 
-pyinstaller --onefile --windowed --name "Omega Verksted" --icon "./ov_logo.ico" --add-data "./ov_logo.ico;." "./main.py"
+pyinstaller --onefile --windowed --name "Omega Verksted" --icon "./ov_logo.ico" --add-data "./ov_logo.ico;." --version-file "./version.txt" "./main.py"
 
 if %ERRORLEVEL% neq 0 (
     echo Build process failed.
