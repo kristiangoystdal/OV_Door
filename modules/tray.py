@@ -9,7 +9,6 @@ from io import BytesIO
 from modules.user_interface import user_confirm
 from modules.startup import check_startup, add_to_startup, remove_from_startup
 from modules.icon import update_icon_based_on_api
-from modules.updates import start_gui
 
 
 def open_github():
@@ -40,8 +39,6 @@ def run_updater(icon, item):
 
 def create_tray_icon():
     menu = Menu(
-        # item("Omega Verksted Door Status", open_github),
-        item("Check for Updates", run_updater),
         item("Check out GitHub", open_github),
         item("Open Website", open_website),
         item("Run at Startup", toggle_startup, checked=lambda item: check_startup()),

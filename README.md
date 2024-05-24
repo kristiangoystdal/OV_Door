@@ -19,12 +19,8 @@ OV_Door is a Python-based application for Windows, specifically designed for sho
 ### Setup
 
 1. Download the "Omega Verksted.zip" folder.
-2. Unzip and run installer_omega_verksted.exe to install the application. Make sure to check the box to launch the application after installation if desired.
-
-### Running the Application manually
-
-- Navigate to `C:\Program Files\Omega_Verksted` and run `Omega Verksted.exe`.
-- To ensure the application runs at system startup, enable "Run at startup" by right-clicking the system tray icon and selecting the option.
+2. Unzip and run Omega Verksted.exe to run the application.
+3. To ensure the application runs at system startup, enable "Run at startup" by right-clicking the system tray icon and selecting the option.
 
 ## Contributing
 
@@ -33,4 +29,4 @@ We encourage community contributions! Please fork the repository and submit pull
 ### Building the Application
 
 - For development and testing, use `BuildExe.bat` to compile the `main.py` file.
-- The output will be placed in a folder named "Omega Verksted" within the `dist` directory. Ensure all files remain in the folder to maintain functionality.
+- The output will be placed within the `dist` directory as an executable file.
